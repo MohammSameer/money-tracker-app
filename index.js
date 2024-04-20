@@ -9,7 +9,11 @@ app.use(bodyParser.urlencoded({
     extended: true
 }))
 
-mongoose.connect('mongodb://0.0.0.0:27017/moneylist')
+mongoose.connect('mongodb://0.0.0.0:27017/moneylist',{
+    useNewUrlParser:true,
+    useUnifiedTopology:true,
+    useCreateIndex :true
+})
 var db = mongoose.connection
 db.on('error',()=> console.log("error in connecting to database"))
 db.once('open',() => console.log(`connected to the database`))
