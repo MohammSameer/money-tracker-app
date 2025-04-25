@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }))
 
-mongoose.connect('mongodb://0.0.0.0:27017/moneylist')
+mongoose.connect('mongodb+srv://mdsameer:mdsameer@cluster0.ms7eczg.mongodb.net/moneylist?retryWrites=true&w=majority')
 var db = mongoose.connection
 db.on('error',()=> console.log("error in connecting to database"))
 db.once('open',() => console.log(`connected to the database`))
@@ -39,5 +39,9 @@ app.get("/",(req,res)=>{
         "Allow-access-Allow-origin":'*'
     })
     return res.redirect('index.html')
-}).listen(5000)
-console.log(`listening on port 5000`);
+})
+
+app.listen(5000,()=>{
+    console.log(`listening on port 5000`)
+})
+
